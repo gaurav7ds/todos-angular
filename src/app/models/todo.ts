@@ -1,1 +1,1 @@
-export interface Todo{id:string,text:string,date:any};
+export interface Todo{id:number,text:string,date:any};
