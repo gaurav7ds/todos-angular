@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from 'src/app/models/todo';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  text:boolean = false;
-  constructor() { }
+  id:string;
+  text:string;
+  date:any;
+  //text:boolean = false;
+  constructor(private todoService:TodoService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.todoService.selectedTodo.subscribe(todo=>{
+      if(todo.id!==null){
+        this.id = todo.id;
+        this.text = todo.text;
+        this.date = todo.date;
+
+      }
+    })
   }
 
 }
